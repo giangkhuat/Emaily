@@ -11,12 +11,10 @@ require("./models/User");
 /* Execute the passport file which requires Users*/
 require("./services/passport");
 
-/* Make app object available to the authRoutes file*/
-require("./routes/authRoutes")(app);
+
 
 /* Connect database */
 mongoose.connect(keys.mongoURI);
-
 
 
 // Middleware, function that will be run before any route handler in our a[[]]
@@ -31,6 +29,8 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+/* Make app object available to the authRoutes file*/
+require("./routes/authRoutes")(app);
 
 app.get("/", (req, res) => {
     res.send({ hi: "there" });
