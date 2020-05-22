@@ -4,6 +4,8 @@ const keys = require("./config/keys");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 
+const app = express();
+
 /* Load UserSchema into the collection Users */
 require("./models/User");
 /* Execute the passport file which requires Users*/
@@ -15,7 +17,7 @@ require("./routes/authRoutes")(app);
 /* Connect database */
 mongoose.connect(keys.mongoURI);
 
-const app = express();
+
 
 // Middleware, function that will be run before any route handler in our a[[]]
 /* cookieSession takes in a configuration object */
