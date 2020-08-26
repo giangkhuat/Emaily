@@ -14,33 +14,34 @@ But our app is not seen here, so we can export these routes  to pass  as a funct
 //   will redirect the user back to this application at /auth/google/callback
  */
 
-module.exports = app => {
-    app.get(
-        "/auth/google",
-        passport.authenticate("google", {
-            scope: ["profile", "email"]
-        })
-    );
+module.exports = (app) => {
+  app.get(
+    "/auth/google",
+    passport.authenticate("google", {
+      scope: ["profile", "email"],
+    })
+  );
 
-    /* Google strategy will figure out exchanging code and get the user profile*/
-    //   Use passport.authenticate() as route middleware to authenticate the
-    //   request.  If authentication fails, the user will be redirected back to the
-    //   login page.  Otherwise, the primary route function function will be called,
-    //   which, in this example, will redirect the user to the home page.
-    app.get("/auth/google/callback", passport.authenticate("google"));
-    
-    app.get('/api/logout', (req, res) => {
-        // logout() kill the cookie
-        req.logout();
-        res.send(req.user);
-    });
-    
-    app.get('/api/current_user', (req, res) => {
-       res.send(req.user); 
-    });
-    
+  /* Google strategy will figure out exchanging code and get the user profile*/
+  //   Use passport.authenticate() as route middleware to authenticate the
+  //   request.  If authentication fails, the user will be redirected back to the
+  //   login page.  Otherwise, the primary route function function will be called,
+  //   which, in this example, will redirect the user to the home page.
+  app.get(
+    "/auth/google/callback",
+    passport.authenticate("google"),
+    (req, res) => {
+      res.redirect("/surveys");
+    }
+  );
+
+  app.get("/api/logout", (req, res) => {
+    // logout() kill the cookie
+    req.logout();
+    res.redirect("/");
+  });
+
+  app.get("/api/current_user", (req, res) => {
+    res.send(req.user);
+  });
 };
-
-
-
-

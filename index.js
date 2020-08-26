@@ -11,20 +11,17 @@ require("./models/User");
 /* Execute the passport file which requires Users*/
 require("./services/passport");
 
-
-
 /* Connect database */
 mongoose.connect(keys.mongoURI);
-
 
 // Middleware, function that will be run before any route handler in our a[[]]
 /* cookieSession takes in a configuration object */
 app.use(
-    cookieSession({
-        // 30 days last cookie
-        maxAge: 30 * 24 * 60 * 60 * 100,
-        keys: [keys.cookieKey]
-    })
+  cookieSession({
+    // 30 days last cookie
+    maxAge: 30 * 24 * 60 * 60 * 100,
+    keys: [keys.cookieKey],
+  })
 );
 
 app.use(passport.initialize());
@@ -33,7 +30,7 @@ app.use(passport.session());
 require("./routes/authRoutes")(app);
 
 app.get("/", (req, res) => {
-    res.send({ hi: "there" });
+  res.send({ hi: "there" });
 });
 
 const PORT = process.env.PORT || 5000;
