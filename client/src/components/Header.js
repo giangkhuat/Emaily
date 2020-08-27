@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Payments from "./Payments";
+
 class Header extends Component {
   renderContent() {
     switch (this.props.auth) {
       case null:
-        return "Loading";
+        return <li>Loading</li>;
       case false:
         return (
           <li>
@@ -14,9 +16,14 @@ class Header extends Component {
         );
       default:
         return (
-          <li>
-            <a href="/api/logout">Logout</a>
-          </li>
+          <>
+            <li>
+              <Payments />
+            </li>
+            <li>
+              <a href="/api/logout">Logout</a>
+            </li>
+          </>
         );
     }
   }
@@ -32,9 +39,7 @@ class Header extends Component {
             Emaily
           </Link>
           <ul id="nav-mobile" className="right">
-            <li>
-              <a href="sass.html">{this.renderContent()}</a>
-            </li>
+            {this.renderContent()}
           </ul>
         </div>
       </nav>
