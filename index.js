@@ -28,6 +28,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 /* Make app object available to the authRoutes file*/
 require("./routes/authRoutes")(app);
+require("./routes/billingRoutes")(app);
 
 app.get("/", (req, res) => {
   res.send({ hi: "there" });

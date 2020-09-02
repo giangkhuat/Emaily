@@ -23,6 +23,7 @@
     "nodemon": "^2.0.4",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "stripe": "^8.90.0"
   }
 }
