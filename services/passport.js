@@ -27,8 +27,11 @@ passport.deserializeUser((id, done) => {
 passport.use(
   new GoogleStrategy(
     {
+      // so google recognize our app when forward user req to google
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
+      // url that Google redirect users to after user grant permission for Emaily
+      // set cookie so users stay logged in
       callbackURL: "/auth/google/callback",
       proxy: true,
     },

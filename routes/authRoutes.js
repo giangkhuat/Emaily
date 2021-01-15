@@ -17,6 +17,8 @@ But our app is not seen here, so we can export these routes  to pass  as a funct
 module.exports = (app) => {
   app.get(
     "/auth/google",
+    // before user is directed to the server, we tell 
+    // google what user info we need 
     passport.authenticate("google", {
       scope: ["profile", "email"],
     })
@@ -45,3 +47,4 @@ module.exports = (app) => {
     res.send(req.user);
   });
 };
+

@@ -1,9 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const keys = require("./config/keys");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
-
+const bodyParser = require("body-parser");
+const keys = require("./config/keys");
 const app = express();
 
 /* Load UserSchema into the collection Users */
@@ -15,6 +15,9 @@ require("./services/passport");
 mongoose.connect(keys.mongoURI);
 
 // Middleware, function that will be run before any route handler in our a[[]]
+
+app.use(bodyParser.json());
+
 /* cookieSession takes in a configuration object */
 app.use(
   cookieSession({
