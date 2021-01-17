@@ -33,9 +33,29 @@ app.use(passport.session());
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
 
+/*
 app.get("/", (req, res) => {
   res.send({ hi: "there" });
 });
+*/
+
+if (process.env.NODE_ENV === 'production') {
+  // express will serve up production assets
+  // like main.js or main.css
+  app.use(express.static('client/build'));
+
+  // Express will serve index.js if it 
+  // does not recognize the route
+  const path = require('path');
+  // All previous attempts to load up assets or route in the server side fail
+  // go to our client side application
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
+
+
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
