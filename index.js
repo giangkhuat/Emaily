@@ -8,6 +8,7 @@ const app = express();
 
 /* Load UserSchema into the collection Users */
 require("./models/User");
+require("./models/Survey");
 /* Execute the passport file which requires Users*/
 require("./services/passport");
 
