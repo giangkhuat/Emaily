@@ -33,7 +33,7 @@ app.use(passport.session());
 /* Make app object available to the authRoutes file*/
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
-
+require("./routes/surveyRoutes")(app);
 /*
 app.get("/", (req, res) => {
   res.send({ hi: "there" });
