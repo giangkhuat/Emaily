@@ -40,7 +40,6 @@ app.get("/", (req, res) => {
 });
 */
 
-
 if (process.env.NODE_ENV === 'production') {
   // express will serve up production assets
   // like main.js or main.css
