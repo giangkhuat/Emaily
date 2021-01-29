@@ -6,7 +6,6 @@ class Mailer {
     sgMail.setApiKey(keys.sendgridKey);
     this.msg = {
       to: recipients.map(({ email }) => email),
-  // to: 'khuatgia@grinnell.edu',
       from: "khuatgia@grinnell.edu",
       subject: subject,
       html: content,
