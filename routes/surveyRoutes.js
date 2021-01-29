@@ -6,6 +6,11 @@ const Mailer = require('../services/Mailer');
 const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 
 module.exports = app  => {
+
+    app.get('/api/surveys/feedback', (req, res) =>{
+        res.send('Thank you for your feedback');
+    });
+
     // Create survey and email objects
     app.post('/api/surveys', requireLogin, requireSurveyCredits, async (req, res) => {
           console.log(req.body);
